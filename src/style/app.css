@@ -137,7 +137,7 @@ body.stream {
     float: right;
     width: 3.715rem;
     background-color: var(--control-buttons-bg-color);
-    display: none !important;
+    display: none;
 }
 
 .control-button {
