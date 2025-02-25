@@ -113,11 +113,15 @@ export class StreamClientScrcpy
     }
 
     private static createVideoSettingsWithBounds(old: VideoSettings, newBounds: Size): VideoSettings {
+        // newBounds.height = 1920;
+        // newBounds.h = 1920;
+        // newBounds.width = 1080;
+        // newBounds.w = 1080;
         return new VideoSettings({
             crop: old.crop,
-            bitrate: old.bitrate,
+            bitrate: 7815744,
             bounds: newBounds,
-            maxFps: old.maxFps,
+            maxFps: 60,
             iFrameInterval: old.iFrameInterval,
             sendFrameMeta: old.sendFrameMeta,
             lockedVideoOrientation: old.lockedVideoOrientation,
