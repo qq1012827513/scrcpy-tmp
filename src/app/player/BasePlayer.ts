@@ -572,6 +572,6 @@ export abstract class BasePlayer extends TypedEmitter<PlayerEvents> {
         fitToScreen: boolean,
         displayInfo?: DisplayInfo,
     ): void {
-        this.putVideoSettingsToStorage(this.storageKeyPrefix, udid, videoSettings, fitToScreen, displayInfo);
+        this.putVideoSettingsToStorage(this.storageKeyPrefix, udid, videoSettings, true, displayInfo);
     }
 }

@@ -146,7 +146,7 @@ export class StreamClientScrcpy
         }
 
         const { udid, player: playerName } = this.params;
-        this.startStream({ udid, player, playerName, fitToScreen, videoSettings });
+        this.startStream({ udid, player, playerName, true, videoSettings });
         this.setBodyClass('stream');
     }
 
@@ -214,7 +214,7 @@ export class StreamClientScrcpy
             const newBounds = this.getMaxSize();
             if (newBounds) {
                 currentSettings = StreamClientScrcpy.createVideoSettingsWithBounds(currentSettings, newBounds);
-                this.player.setVideoSettings(currentSettings, this.fitToScreen, false);
+                this.player.setVideoSettings(currentSettings, true, false);
             }
         // }
         if (!videoSettings || !screenInfo) {
@@ -409,7 +409,7 @@ export class StreamClientScrcpy
             fitToScreen = true;
         }
         if (this.player) {
-            this.player.setVideoSettings(videoSettings, fitToScreen, saveToStorage);
+            this.player.setVideoSettings(videoSettings, true, saveToStorage);
         }
     }
 
