@@ -208,7 +208,7 @@ export class StreamClientScrcpy
         const { videoSettings, screenInfo } = info;
         this.player.setDisplayInfo(info.displayInfo);
         if (typeof this.fitToScreen !== 'boolean') {
-            this.fitToScreen = this.player.getFitToScreenStatus();
+            this.fitToScreen = true;
         }
         // if (this.fitToScreen) {
             const newBounds = this.getMaxSize();
@@ -284,7 +284,7 @@ export class StreamClientScrcpy
                 throw Error(`Unsupported player: "${playerName}"`);
             }
             if (typeof fitToScreen !== 'boolean') {
-                fitToScreen = StreamClientScrcpy.getFitToScreen(playerName, udid, displayInfo);
+                fitToScreen =true;
             }
             player = p;
         }
