@@ -131,7 +131,7 @@ export class StreamClientScrcpy
         params: ParamsStreamScrcpy,
         streamReceiver?: StreamReceiverScrcpy,
         player?: BasePlayer,
-        fitToScreen?: boolean,
+        fitToScreen = true,
         videoSettings?: VideoSettings,
     ) {
         super(params);
@@ -405,7 +405,7 @@ export class StreamClientScrcpy
             fitToScreen = true;
         }
         if (this.player) {
-            this.player.setVideoSettings(videoSettings, true, saveToStorage);
+            this.player.setVideoSettings(videoSettings, fitToScreen, saveToStorage);
         }
     }
 
