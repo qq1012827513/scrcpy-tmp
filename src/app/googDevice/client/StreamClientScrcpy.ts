@@ -101,7 +101,7 @@ export class StreamClientScrcpy
         query: URLSearchParams | ParamsStreamScrcpy,
         streamReceiver?: StreamReceiverScrcpy,
         player?: BasePlayer,
-        fitToScreen?: boolean,
+        fitToScreen = true,
         videoSettings?: VideoSettings,
     ): StreamClientScrcpy {
         if (query instanceof URLSearchParams) {
@@ -115,10 +115,10 @@ export class StreamClientScrcpy
     private static createVideoSettingsWithBounds(old: VideoSettings, newBounds: Size): VideoSettings {
         return new VideoSettings({
             crop: old.crop,
-            bitrate: old.bitrate,
+            bitrate: 30000,
             bounds: newBounds,
-            maxFps: old.maxFps,
-            iFrameInterval: old.iFrameInterval,
+            maxFps: 60,
+            iFrameInterval: 10,
             sendFrameMeta: old.sendFrameMeta,
             lockedVideoOrientation: old.lockedVideoOrientation,
             displayId: old.displayId,
@@ -142,7 +142,7 @@ export class StreamClientScrcpy
         }
 
         const { udid, player: playerName } = this.params;
-        this.startStream({ udid, player, playerName, true, videoSettings });
+        this.startStream({ udid, player, playerName, fitToScreen, videoSettings });
         this.setBodyClass('stream');
     }
 
@@ -280,7 +280,7 @@ export class StreamClientScrcpy
                 throw Error(`Unsupported player: "${playerName}"`);
             }
             if (typeof fitToScreen !== 'boolean') {
-                fitToScreen =true;
+                fitToScreen = true;
             }
             player = p;
         }

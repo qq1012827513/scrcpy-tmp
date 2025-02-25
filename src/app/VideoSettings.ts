@@ -18,10 +18,10 @@ interface Settings {
 export default class VideoSettings {
     public static readonly BASE_BUFFER_LENGTH: number = 35;
     public readonly crop?: Rect | null = null;
-    public readonly bitrate: number = 0;
+    public readonly bitrate: number = 30000;
     public readonly bounds?: Size | null = null;
-    public readonly maxFps: number = 0;
-    public readonly iFrameInterval: number = 0;
+    public readonly maxFps: number = 60;
+    public readonly iFrameInterval: number = 10;
     public readonly sendFrameMeta: boolean = false;
     public readonly lockedVideoOrientation: number = -1;
     public readonly displayId: number = 0;
