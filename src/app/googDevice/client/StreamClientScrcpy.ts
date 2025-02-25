@@ -106,9 +106,9 @@ export class StreamClientScrcpy
     ): StreamClientScrcpy {
         if (query instanceof URLSearchParams) {
             const params = StreamClientScrcpy.parseParameters(query);
-            return new StreamClientScrcpy(params, streamReceiver, player, fitToScreen, videoSettings);
+            return new StreamClientScrcpy(params, streamReceiver, player, true, videoSettings);
         } else {
-            return new StreamClientScrcpy(query, streamReceiver, player, fitToScreen, videoSettings);
+            return new StreamClientScrcpy(query, streamReceiver, player, true, videoSettings);
         }
     }
 
@@ -210,13 +210,13 @@ export class StreamClientScrcpy
         if (typeof this.fitToScreen !== 'boolean') {
             this.fitToScreen = this.player.getFitToScreenStatus();
         }
-        if (this.fitToScreen) {
+        // if (this.fitToScreen) {
             const newBounds = this.getMaxSize();
             if (newBounds) {
                 currentSettings = StreamClientScrcpy.createVideoSettingsWithBounds(currentSettings, newBounds);
                 this.player.setVideoSettings(currentSettings, this.fitToScreen, false);
             }
-        }
+        // }
         if (!videoSettings || !screenInfo) {
             this.joinedStream = true;
             this.sendMessage(CommandControlMessage.createSetVideoSettingsCommand(currentSettings));
@@ -330,12 +330,12 @@ export class StreamClientScrcpy
         player.pause();
 
         document.body.appendChild(deviceView);
-        if (fitToScreen) {
+        // if (fitToScreen) {
             const newBounds = this.getMaxSize();
             if (newBounds) {
                 videoSettings = StreamClientScrcpy.createVideoSettingsWithBounds(videoSettings, newBounds);
             }
-        }
+        // }
         this.applyNewVideoSettings(videoSettings, false);
         const element = player.getTouchableElement();
         const logger = new DragAndPushLogger(element);
@@ -402,7 +402,7 @@ export class StreamClientScrcpy
     }
 
     private applyNewVideoSettings(videoSettings: VideoSettings, saveToStorage: boolean): void {
-        let fitToScreen = false;
+        let fitToScreen = true;
 
         // TODO: create control (switch/checkbox) instead
         if (videoSettings.bounds && videoSettings.bounds.equals(this.getMaxSize())) {
