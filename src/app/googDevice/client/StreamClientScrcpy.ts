@@ -114,7 +114,7 @@ export class StreamClientScrcpy
 
     private static createVideoSettingsWithBounds(old: VideoSettings, newBounds: Size): VideoSettings {
         newBounds.height = 1280;
-        newBounds.height = 720;
+        newBounds.width = 720;
         return new VideoSettings({
             crop: old.crop,
             bitrate: 80000,
