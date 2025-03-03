@@ -101,7 +101,7 @@ export class StreamClientScrcpy
         query: URLSearchParams | ParamsStreamScrcpy,
         streamReceiver?: StreamReceiverScrcpy,
         player?: BasePlayer,
-        fitToScreen = true,
+        fitToScreen?: boolean,
         videoSettings?: VideoSettings,
     ): StreamClientScrcpy {
         if (query instanceof URLSearchParams) {
@@ -113,12 +113,14 @@ export class StreamClientScrcpy
     }
 
     private static createVideoSettingsWithBounds(old: VideoSettings, newBounds: Size): VideoSettings {
+        newBounds.height = 1280;
+        newBounds.height = 720;
         return new VideoSettings({
             crop: old.crop,
-            bitrate: 30000,
+            bitrate: 80000,
             bounds: newBounds,
             maxFps: 60,
-            iFrameInterval: 10,
+            iFrameInterval: 5,
             sendFrameMeta: old.sendFrameMeta,
             lockedVideoOrientation: old.lockedVideoOrientation,
             displayId: old.displayId,
